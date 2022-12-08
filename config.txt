@@ -1,0 +1,8 @@
+kernel=test.img
+kernel_address=0x80000
+arm_64bit=1
+# could remove this if we manually set the GPIO-pin mode into "ALT5"
+enable_uart=1
+# enable_uart implies core_freq = 250 according to https://www.raspberrypi.com/documentation/computers/configuration.html but that seems wrong
+core_freq=250
+core_freq_min=250
