@@ -1,6 +1,6 @@
 .include "src/io.S"
 .include "src/tasks/01ab.S"
-.include "src/tasks/02a.S"
+.include "src/tasks/02ab.S"
 
 .section .vector_table
 VECTOR_TABLE: .fill 10, 8, 0
@@ -21,6 +21,7 @@ dot: .asciz "."
 msg_1a: .asciz "\r\nSolution 1a: "
 msg_1b: .asciz "\r\nSolution 1b: "
 msg_2a: .asciz "\r\nSolution 2a: "
+msg_2b: .asciz "\r\nSolution 2b: "
 
 .align 4
 timeout: .4byte 1 << 12 //must start with 000, 1<<16 = 1 second according to linux but seems to be 16?
@@ -56,7 +57,12 @@ bl print_dec
 bl set_watchdog
 adr x1, msg_2a
 bl print_str
-bl start_2a
+bl start_2ab
+str x0, [sp, #-16]!
+bl print_dec
+adr x1, msg_2b
+bl print_str
+ldr x1, [sp], 16
 bl print_dec
 
 wait_for_restart:
